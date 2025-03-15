@@ -26,7 +26,7 @@ DEFAULT_HEATMAP_COLORSCALE = 'Pinkyl'
 SITE_NAME = 'Closer Than You Think'
 
 # Set page config for mobile-first design
-st.set_page_config(page_title=SITE_NAME, page_icon="💕", layout='centered')
+st.set_page_config(page_title=SITE_NAME, page_icon="💕", layout='wide')
 
 # Load data from parquet file
 @st.cache_data
@@ -51,9 +51,6 @@ st.markdown(f"""
         padding-top: 1rem;
         padding-bottom: 1rem;
         font-family: 'Montserrat', 'Nunito', sans-serif;
-        border: 2px solid {COLORS["black"]}; /* Border around the main body */
-        border-radius: 10px; /* Rounded corners for the border */
-        margin: 1rem; /* Add some margin around the border */
     }}
     h1, h2, h3 {{
         margin-top: 0.8rem !important;
