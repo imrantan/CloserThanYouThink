@@ -4,8 +4,6 @@ import plotly.express as px
 import numpy as np
 from datetime import datetime, timedelta
 import plotly.graph_objects as go
-import july
-import matplotlib.pyplot as plt
 from data_transformation import transform_for_time_heatmap
 
 # Updated color palette with better contrast
