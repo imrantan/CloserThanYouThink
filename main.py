@@ -198,7 +198,7 @@ customdata = customdata[week_start_dates]
 # Create the heatmap using plotly
 fig = go.Figure(data=go.Heatmap(
     z=heatmap_data.values,  # Data values (call durations)
-    x=week_start_labels,  # Use formatted start dates as x-axis labels
+    # x=week_start_labels,  # Use formatted start dates as x-axis labels
     y=["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],  # Weekday labels (starting from Sunday)
     colorscale=DEFAULT_HEATMAP_COLORSCALE,  # GitHub-like green color scale
     hoverongaps=False,
@@ -211,17 +211,19 @@ fig = go.Figure(data=go.Heatmap(
     showscale=False,
 ))
 
+week_start_labels = list(week_start_dates.dt.strftime("%d %b %y"))  # Convert to list
+
 # Customize layout
 fig.update_layout(
     xaxis=dict(
         title="Week Start Date (Sunday)",
         title_font=dict(size=12, color=COLORS["dark_text"]),  # Larger font for better readability
-        tickfont=dict(size=10, color=COLORS["dark_text"]),  # Larger font for better readability
-        tickvals=[0, len(week_start_labels) - 1],  # Only first and last
-        ticktext=[week_start_labels[0], week_start_labels[-1]],  # First and last labels
+        showticklabels=False,  # Hide tick labels
+        ticks="",  # Remove tick markers
+        # tickfont=dict(size=10, color=COLORS["dark_text"]),  # Larger font for better readability
         # tickvals=list(range(len(week_start_labels))),  # Use indices for tick positions
         # ticktext=week_start_labels,  # Use formatted start dates as tick labels
-        tickangle=40,  # Tilt the labels for the x-axis diagonally
+        # tickangle=40,  # Tilt the labels for the x-axis diagonally
     ),
     yaxis=dict(
         tickfont=dict(size=12, color=COLORS["dark_text"]),  # Larger font for better readability
@@ -230,7 +232,7 @@ fig.update_layout(
     hoverlabel=dict(
         font_color=COLORS["dark_text"],  # Change font color
     ),
-    height=550,
+    height=300,
     margin=dict(l=20, r=10, t=20, b=10),
     paper_bgcolor=COLORS["white"],
     plot_bgcolor=COLORS["white"],
