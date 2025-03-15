@@ -217,13 +217,13 @@ fig.update_layout(
         title="Week Start Date (Sunday)",
         title_font=dict(size=12, color=COLORS["dark_text"]),  # Larger font for better readability
         tickfont=dict(size=10, color=COLORS["dark_text"]),  # Larger font for better readability
-        tickvals=list(range(len(week_start_labels))),  # Use indices for tick positions
-        ticktext=week_start_labels,  # Use formatted start dates as tick labels
+        tickvals=[0, len(week_start_labels) - 1],  # Only first and last
+        ticktext=[week_start_labels[0], week_start_labels[-1]],  # First and last labels
+        # tickvals=list(range(len(week_start_labels))),  # Use indices for tick positions
+        # ticktext=week_start_labels,  # Use formatted start dates as tick labels
         tickangle=40,  # Tilt the labels for the x-axis diagonally
     ),
     yaxis=dict(
-        # title="Day of Week",
-        # title_font=dict(size=12, color=COLORS["dark_text"]),  # Larger font for better readability
         tickfont=dict(size=12, color=COLORS["dark_text"]),  # Larger font for better readability
         autorange="reversed",  # Reverse the y-axis to match GitHub's layout
     ),
