@@ -134,24 +134,23 @@ Overview
 </div>
 """, unsafe_allow_html=True)
 
-with st.container(border=None):
-    total_calls = len(filtered_df)
-    total_duration = filtered_df["Call_Length_Minutes"].sum()
-    avg_duration = filtered_df["Call_Length_Minutes"].mean()
-    median_duration = filtered_df["Call_Length_Minutes"].median()
-    max_duration = filtered_df["Call_Length_Minutes"].max()
+total_calls = len(filtered_df)
+total_duration = filtered_df["Call_Length_Minutes"].sum()
+avg_duration = filtered_df["Call_Length_Minutes"].mean()
+median_duration = filtered_df["Call_Length_Minutes"].median()
+max_duration = filtered_df["Call_Length_Minutes"].max()
 
-    # Mobile-friendly metrics layout with better contrast
-    col1, col2 = st.columns(2)
-    with col1:
-        st.metric("Total Calls", f"{total_calls}")
-        st.metric("Total Hours", f"{total_duration/60:,.0f}")
-        st.metric("Median Call Duration (min)", f"{median_duration:,.0f}")
-        
-    with col2:
-        st.metric("Total Minutes", f"{total_duration:,.0f}")
-        st.metric("Avg Call Duration (min)", f"{avg_duration:,.0f}")
-        st.metric("Max Call Duration (min)", f"{max_duration:,.0f}")
+# Mobile-friendly metrics layout with better contrast
+col1, col2 = st.columns(2)
+with col1:
+    st.metric("Total Calls", f"{total_calls}")
+    st.metric("Total Hours", f"{total_duration/60:,.0f}")
+    st.metric("Median Call Duration (min)", f"{median_duration:,.0f}")
+    
+with col2:
+    st.metric("Total Minutes", f"{total_duration:,.0f}")
+    st.metric("Avg Call Duration (min)", f"{avg_duration:,.0f}")
+    st.metric("Max Call Duration (min)", f"{max_duration:,.0f}")
 
 # Add a divider
 st.markdown("---")
