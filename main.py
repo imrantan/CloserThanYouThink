@@ -58,26 +58,12 @@ st.markdown(f"""
         color: {COLORS["dark_text"]} !important;
         font-weight: 700; /* Bold for headings */
     }}
-    .stMetric {{
-        background-color: {COLORS["white"]};
-        padding: 15px 10px;
-        border-radius: 5px;
-        margin-bottom: 10px;
-        border: 1px solid {COLORS["black"]};
-    }}
-    .stMetric label {{
-        color: {COLORS["dark_text"]} !important;
-        font-weight: bold !important;
-    }}
-    .stMetric p {{
-        color: {COLORS["dark_text"]} !important;
-        font-size: 24px !important;
-        font-weight: bold !important;
-    }}
-    .metric-container {{
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
+    div[data-testid="metric-container"] {{
+            background-color: white;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
     }}
     .section-header {{
         padding: 0.75rem;
