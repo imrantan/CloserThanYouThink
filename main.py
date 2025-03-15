@@ -58,12 +58,10 @@ st.markdown(f"""
         color: {COLORS["dark_text"]} !important;
         font-weight: 700; /* Bold for headings */
     }}
-    div[data-testid="metric-container"] {{
-            background-color: white;
-            padding: 10px;
-            border-radius: 10px;
-            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
+    .metric-container {{
+    background-color: {COLORS["white"]};
+    border-radius: 10px;
+    padding: 10px;
     }}
     .section-header {{
         padding: 0.75rem;
