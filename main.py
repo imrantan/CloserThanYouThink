@@ -230,10 +230,15 @@ fig.update_layout(
         autorange="reversed",  # Reverse the y-axis to match GitHub's layout
     ),
     hoverlabel=dict(
-        font_color=COLORS["dark_text"],  # Change font color
+        font_family="Montserrat, Nunito, sans-serif",  # Match Streamlit font
+        font_size=12,  # Set font size
+        font_color=COLORS["white"],  # Set font color
+        bgcolor=COLORS["pink"],  # Set background color of hover text
+        bordercolor=COLORS["black"],  # Set border color of hover text
     ),
     height=300,
-    margin=dict(l=20, r=10, t=20, b=10),
+    width = 2000,
+    margin=dict(l=50, r=20, t=20, b=20),
     paper_bgcolor=COLORS["white"],
     plot_bgcolor=COLORS["white"],
     font=dict(color=COLORS["dark_text"], size=12),
@@ -241,10 +246,36 @@ fig.update_layout(
     hovermode='closest'
 )
 
-fig.update_layout(showlegend=False)
-
 # Display the heatmap
-st.plotly_chart(fig, use_container_width=True)
+# st.plotly_chart(fig, use_container_width=True)
+
+# Convert the Plotly figure to HTML
+plotly_html = fig.to_html(full_html=False)
+
+# Create a scrollable HTML container
+# Create a scrollable HTML container with custom CSS
+scrollable_html = f"""
+<style>
+    @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
+    .scrollable-container {{
+        width: 100%;
+        overflow-x: auto;
+        font-family: 'Montserrat', 'Nunito', sans-serif;
+        color: {COLORS["dark_text"]};
+        background-color: {COLORS["white"]};  /* Fill the container with a specific color */
+    }}
+    .scrollable-container .plotly .hovertext {{
+        font-family: 'Montserrat', 'Nunito', sans-serif !important;
+        color: {COLORS["dark_text"]} !important;
+    }}
+</style>
+<div class="scrollable-container">
+    {plotly_html}
+</div>
+"""
+
+# Display the scrollable chart in Streamlit
+st.components.v1.html(scrollable_html, height=320)
 
 # Add a divider
 st.markdown("---")
