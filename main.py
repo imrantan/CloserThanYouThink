@@ -268,6 +268,10 @@ scrollable_html = f"""
         font-family: 'Montserrat', 'Nunito', sans-serif !important;
         color: {COLORS["dark_text"]} !important;
     }}
+    .scrollable-container .plotly .xaxis {{
+        font-family: 'Montserrat', 'Nunito', sans-serif !important;
+        color: {COLORS["dark_text"]} !important;
+    }}
 </style>
 <div class="scrollable-container">
     {plotly_html}
