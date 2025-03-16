@@ -236,9 +236,9 @@ fig.update_layout(
         bgcolor=COLORS["pink"],  # Set background color of hover text
         bordercolor=COLORS["black"],  # Set border color of hover text
     ),
-    height=300,
+    height=400,
     width = 2000,
-    margin=dict(l=50, r=20, t=20, b=50),
+    margin=dict(l=50, r=50, t=50, b=70),
     paper_bgcolor=COLORS["white"],
     plot_bgcolor=COLORS["white"],
     font=dict(color=COLORS["dark_text"], size=12),
@@ -279,7 +279,7 @@ scrollable_html = f"""
 """
 
 # Display the scrollable chart in Streamlit
-st.components.v1.html(scrollable_html, height=320)
+st.components.v1.html(scrollable_html, height=500)
 
 # Add a divider
 st.markdown("---")
