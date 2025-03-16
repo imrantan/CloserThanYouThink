@@ -26,7 +26,7 @@ DEFAULT_HEATMAP_COLORSCALE = 'Pinkyl'
 SITE_NAME = 'Closer Than You Think'
 
 # Set page config for mobile-first design
-st.set_page_config(page_title=SITE_NAME, page_icon="💕", layout='wide')
+st.set_page_config(page_title=SITE_NAME, page_icon="💕", layout='centered')
 
 # Load data from parquet file
 @st.cache_data
@@ -581,7 +581,7 @@ fig_distribution = px.histogram(
 # Customize layout for better readability
 fig_distribution.update_layout(
     height=500,
-    width=1550,
+    width=650,
     margin=dict(l=50, r=50, t=50, b=50),
     paper_bgcolor=COLORS["white"],
     plot_bgcolor=COLORS["white"],
