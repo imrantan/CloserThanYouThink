@@ -47,11 +47,6 @@ st.markdown(f"""
         color: {COLORS["dark_text"]};
         font-family: 'Montserrat', 'Nunito', sans-serif;
     }}
-    .main .block-container {{
-        padding-top: 1rem;
-        padding-bottom: 1rem;
-        font-family: 'Montserrat', 'Nunito', sans-serif;
-    }}
     h1, h2, h3 {{
         margin-top: 0.8rem !important;
         margin-bottom: 0.8rem !important;
@@ -353,6 +348,13 @@ fig_time.update_layout(
         categoryarray=all_days,  # Order: Sunday to Saturday
         autorange="reversed"
     ),
+    hoverlabel=dict(
+    font_family="Montserrat, Nunito, sans-serif",  # Match Streamlit font
+    font_size=12,  # Set font size
+    font_color=COLORS["white"],  # Set font color
+    bgcolor=COLORS["pink"],  # Set background color of hover text
+    bordercolor=COLORS["black"],  # Set border color of hover text
+    ),
     height=400,
     width=2000,
     margin=dict(l=50, r=50, t=50, b=70),
@@ -380,7 +382,7 @@ scrollable_html = f"""
         overflow-x: auto;
         font-family: 'Montserrat', 'Nunito', sans-serif;
         color: {COLORS["dark_text"]};
-        background-color: {COLORS["pink"]};  /* Fill the container with a specific color */
+        background-color: {COLORS["white"]};  /* Fill the container with a specific color */
     }}
     .scrollable-container .plotly .hovertext {{
         font-family: 'Montserrat', 'Nunito', sans-serif !important;
@@ -527,12 +529,11 @@ scrollable_html = f"""
     @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
     .scrollable-container {{
         display: flex;
-        height: 100%;             /* Ensure the container takes full height */
-        width: 100%;
+        height: 100%;
         overflow-x: auto;
         font-family: 'Montserrat', 'Nunito', sans-serif;
         color: {COLORS["dark_text"]};
-        background-color: {COLORS["pink"]};  /* Fill the container with a specific color */
+        background-color: {COLORS["white"]};  /* Ensure the background is white */
     }}
     .scrollable-container .plotly .hovertext {{
         font-family: 'Montserrat', 'Nunito', sans-serif !important;
@@ -581,7 +582,7 @@ fig_distribution = px.histogram(
 # Customize layout for better readability
 fig_distribution.update_layout(
     height=500,
-    width=650,
+    width=550,
     margin=dict(l=50, r=50, t=50, b=50),
     paper_bgcolor=COLORS["white"],
     plot_bgcolor=COLORS["white"],
@@ -612,12 +613,15 @@ scrollable_html = f"""
     @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
     .scrollable-container {{
         display: flex;
+        justify-content: center;
         height: 100%;             /* Ensure the container takes full height */
         width: 100%;
         overflow-x: auto;
         font-family: 'Montserrat', 'Nunito', sans-serif;
         color: {COLORS["dark_text"]};
         background-color: {COLORS["pink"]};  /* Fill the container with a specific color */
+        padding-left: 20px;  /* Add left padding */
+        padding-right: 20px;  /* Add right padding */
     }}
     .scrollable-container .plotly .hovertext {{
         font-family: 'Montserrat', 'Nunito', sans-serif !important;
