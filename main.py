@@ -239,8 +239,8 @@ fig.update_layout(
     height=400,
     width = 2000,
     margin=dict(l=50, r=50, t=50, b=70),
-    paper_bgcolor=COLORS["white"],
-    plot_bgcolor=COLORS["white"],
+    # paper_bgcolor=COLORS["white"],
+    # plot_bgcolor=COLORS["white"],
     font=dict(color=COLORS["dark_text"], size=12),
     dragmode=False,  # This disables zoom on drag
     hovermode='closest'
@@ -252,7 +252,6 @@ fig.update_layout(
 # Convert the Plotly figure to HTML
 plotly_html = fig.to_html(full_html=False)
 
-# Create a scrollable HTML container
 # Create a scrollable HTML container with custom CSS
 scrollable_html = f"""
 <style>
@@ -262,7 +261,7 @@ scrollable_html = f"""
         overflow-x: auto;
         font-family: 'Montserrat', 'Nunito', sans-serif;
         color: {COLORS["dark_text"]};
-        background-color: {COLORS["white"]};  /* Fill the container with a specific color */
+        background-color: {COLORS["pink"]};  /* Fill the container with a specific color */
     }}
     .scrollable-container .plotly .hovertext {{
         font-family: 'Montserrat', 'Nunito', sans-serif !important;
@@ -279,7 +278,7 @@ scrollable_html = f"""
 """
 
 # Display the scrollable chart in Streamlit
-st.components.v1.html(scrollable_html, height=500)
+st.components.v1.html(scrollable_html, height=420)
 
 # Add a divider
 st.markdown("---")
@@ -354,9 +353,9 @@ fig_time.update_layout(
         categoryarray=all_days,  # Order: Sunday to Saturday
         autorange="reversed"
     ),
-    height=500,
-    width=1200,
-    margin=dict(l=20, r=20, t=20, b=10),
+    height=400,
+    width=2000,
+    margin=dict(l=50, r=50, t=50, b=70),
     paper_bgcolor=COLORS["white"],
     plot_bgcolor=COLORS["white"],
     font=dict(color=COLORS["dark_text"], size=14),
@@ -365,7 +364,40 @@ fig_time.update_layout(
 )
 
 # Display the heatmap
-st.plotly_chart(fig_time, use_container_width=True)
+# st.plotly_chart(fig_time, use_container_width=True)
+
+# Convert the Plotly figure to HTML
+plotly_html = fig_time.to_html(full_html=False)
+
+# Create a scrollable HTML container with custom CSS
+scrollable_html = f"""
+<style>
+    @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
+    .scrollable-container {{
+        display: flex;
+        height: 100%;             /* Ensure the container takes full height */
+        width: 100%;
+        overflow-x: auto;
+        font-family: 'Montserrat', 'Nunito', sans-serif;
+        color: {COLORS["dark_text"]};
+        background-color: {COLORS["pink"]};  /* Fill the container with a specific color */
+    }}
+    .scrollable-container .plotly .hovertext {{
+        font-family: 'Montserrat', 'Nunito', sans-serif !important;
+        color: {COLORS["dark_text"]} !important;
+    }}
+    .scrollable-container .plotly .xaxis {{
+        font-family: 'Montserrat', 'Nunito', sans-serif !important;
+        color: {COLORS["dark_text"]} !important;
+    }}
+</style>
+<div class="scrollable-container">
+    {plotly_html}
+</div>
+"""
+
+# Display the scrollable chart in Streamlit
+st.components.v1.html(scrollable_html, height=420)
 
 # Add a divider
 st.markdown("---")
@@ -461,7 +493,8 @@ fig_duration.update_traces(
 
 fig_duration.update_layout(
     height=500,
-    margin=dict(l=10, r=10, t=40, b=20),
+    width=1800,
+    margin=dict(l=50, r=50, t=50, b=50),
     paper_bgcolor=COLORS["white"],
     plot_bgcolor=COLORS["white"],
     font=dict(color=COLORS["dark_text"], size=12),
@@ -483,7 +516,40 @@ fig_duration.update_layout(
 )
 
 # Display the line chart
-st.plotly_chart(fig_duration, use_container_width=True)
+# st.plotly_chart(fig_duration, use_container_width=True)
+
+# Convert the Plotly figure to HTML
+plotly_html = fig_duration.to_html(full_html=False)
+
+# Create a scrollable HTML container with custom CSS
+scrollable_html = f"""
+<style>
+    @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
+    .scrollable-container {{
+        display: flex;
+        height: 100%;             /* Ensure the container takes full height */
+        width: 100%;
+        overflow-x: auto;
+        font-family: 'Montserrat', 'Nunito', sans-serif;
+        color: {COLORS["dark_text"]};
+        background-color: {COLORS["pink"]};  /* Fill the container with a specific color */
+    }}
+    .scrollable-container .plotly .hovertext {{
+        font-family: 'Montserrat', 'Nunito', sans-serif !important;
+        color: {COLORS["dark_text"]} !important;
+    }}
+    .scrollable-container .plotly .xaxis {{
+        font-family: 'Montserrat', 'Nunito', sans-serif !important;
+        color: {COLORS["dark_text"]} !important;
+    }}
+</style>
+<div class="scrollable-container">
+    {plotly_html}
+</div>
+"""
+
+# Display the scrollable chart in Streamlit
+st.components.v1.html(scrollable_html, height=520)
 
 # Add a divider
 st.markdown("---")
@@ -501,7 +567,7 @@ col1, _, _= st.columns(3)
 
 with col1:
     # Create a slider to adjust bin size
-    bin_size = st.slider('Select Bin Size', min_value=5, max_value=50, value=25, step=5)
+    bin_size = st.slider('Select Bin Size', min_value=5, max_value=50, value=30, step=5)
 
 # Create a histogram of call durations
 fig_distribution = px.histogram(
@@ -515,6 +581,7 @@ fig_distribution = px.histogram(
 # Customize layout for better readability
 fig_distribution.update_layout(
     height=500,
+    width=1550,
     margin=dict(l=50, r=50, t=50, b=50),
     paper_bgcolor=COLORS["white"],
     plot_bgcolor=COLORS["white"],
@@ -534,7 +601,40 @@ fig_distribution.update_layout(
     hovermode='closest'
 )
 
-st.plotly_chart(fig_distribution, use_container_width=True)
+# st.plotly_chart(fig_distribution, use_container_width=True)
+
+# Convert the Plotly figure to HTML
+plotly_html = fig_distribution.to_html(full_html=False)
+
+# Create a scrollable HTML container with custom CSS
+scrollable_html = f"""
+<style>
+    @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
+    .scrollable-container {{
+        display: flex;
+        height: 100%;             /* Ensure the container takes full height */
+        width: 100%;
+        overflow-x: auto;
+        font-family: 'Montserrat', 'Nunito', sans-serif;
+        color: {COLORS["dark_text"]};
+        background-color: {COLORS["pink"]};  /* Fill the container with a specific color */
+    }}
+    .scrollable-container .plotly .hovertext {{
+        font-family: 'Montserrat', 'Nunito', sans-serif !important;
+        color: {COLORS["dark_text"]} !important;
+    }}
+    .scrollable-container .plotly .xaxis {{
+        font-family: 'Montserrat', 'Nunito', sans-serif !important;
+        color: {COLORS["dark_text"]} !important;
+    }}
+</style>
+<div class="scrollable-container">
+    {plotly_html}
+</div>
+"""
+
+# Display the scrollable chart in Streamlit
+st.components.v1.html(scrollable_html, height=520)
 
 # Add a divider
 st.markdown("---")
