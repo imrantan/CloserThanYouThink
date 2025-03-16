@@ -26,7 +26,7 @@ DEFAULT_HEATMAP_COLORSCALE = 'Pinkyl'
 SITE_NAME = 'Closer Than You Think'
 
 # Set page config for mobile-first design
-st.set_page_config(page_title=SITE_NAME, page_icon="💕", layout='centered')
+st.set_page_config(page_title=SITE_NAME, page_icon="💕", layout='wide')
 
 # Load data from parquet file
 @st.cache_data
@@ -198,7 +198,7 @@ customdata = customdata[week_start_dates]
 # Create the heatmap using plotly
 fig = go.Figure(data=go.Heatmap(
     z=heatmap_data.values,  # Data values (call durations)
-    # x=week_start_labels,  # Use formatted start dates as x-axis labels
+    x=week_start_labels,  # Use formatted start dates as x-axis labels
     y=["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],  # Weekday labels (starting from Sunday)
     colorscale=DEFAULT_HEATMAP_COLORSCALE,  # GitHub-like green color scale
     hoverongaps=False,
@@ -216,14 +216,14 @@ week_start_labels = list(week_start_dates.dt.strftime("%d %b %y"))  # Convert to
 # Customize layout
 fig.update_layout(
     xaxis=dict(
-        title="Week Start Date (Sunday)",
-        title_font=dict(size=12, color=COLORS["dark_text"]),  # Larger font for better readability
-        showticklabels=False,  # Hide tick labels
-        ticks="",  # Remove tick markers
-        # tickfont=dict(size=10, color=COLORS["dark_text"]),  # Larger font for better readability
-        # tickvals=list(range(len(week_start_labels))),  # Use indices for tick positions
-        # ticktext=week_start_labels,  # Use formatted start dates as tick labels
-        # tickangle=40,  # Tilt the labels for the x-axis diagonally
+        # title="Week Start Date (Sunday)",
+        # title_font=dict(size=12, color=COLORS["dark_text"]),  # Larger font for better readability
+        # showticklabels=False,  # Hide tick labels
+        # ticks="",  # Remove tick markers
+        tickfont=dict(size=10, color=COLORS["dark_text"]),  # Larger font for better readability
+        tickvals=list(range(len(week_start_labels))),  # Use indices for tick positions
+        ticktext=week_start_labels,  # Use formatted start dates as tick labels
+        tickangle=40,  # Tilt the labels for the x-axis diagonally
     ),
     yaxis=dict(
         tickfont=dict(size=12, color=COLORS["dark_text"]),  # Larger font for better readability
@@ -238,7 +238,7 @@ fig.update_layout(
     ),
     height=300,
     width = 2000,
-    margin=dict(l=50, r=20, t=20, b=20),
+    margin=dict(l=50, r=20, t=20, b=50),
     paper_bgcolor=COLORS["white"],
     plot_bgcolor=COLORS["white"],
     font=dict(color=COLORS["dark_text"], size=12),
