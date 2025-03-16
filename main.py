@@ -26,7 +26,7 @@ DEFAULT_HEATMAP_COLORSCALE = 'Pinkyl'
 SITE_NAME = 'Closer Than You Think'
 
 # Set page config for mobile-first design
-st.set_page_config(page_title=SITE_NAME, page_icon="💕", layout='centered')
+st.set_page_config(page_title=SITE_NAME, page_icon="💕", layout='wide')
 
 # Load data from parquet file
 @st.cache_data
