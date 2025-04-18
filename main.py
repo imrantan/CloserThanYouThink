@@ -10,6 +10,7 @@ from data_transformation import transform_for_time_heatmap
 COLORS = {
     "pink": "#FF9BB3",  # Primary background color
     "yellow": "#FFE082",  # Accent color for headers and highlights
+    "dark_yellow": "#ffcd36",
     "blue": "#A2DDF0",  # Secondary accent color
     "white": "#FFFFFF",  # For text and backgrounds
     "black": "#333333",  # For text and borders
@@ -576,7 +577,7 @@ fig_distribution = px.histogram(
     x="Call_Length_Minutes",
     nbins=bin_size,
     labels={"Call_Length_Minutes": "Call Duration (Minutes)"},
-    color_discrete_sequence=[COLORS["pink"]],
+    color_discrete_sequence=[COLORS["dark_yellow"]],
 )
 
 # Customize layout for better readability
