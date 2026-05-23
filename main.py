@@ -271,6 +271,7 @@ st.markdown(f"""
     }}
 
     /* === Chart cards (keyed containers) === */
+    .st-key-filter_card,
     .st-key-cal_card,
     .st-key-time_heatmap_card,
     .st-key-trend_card,
@@ -282,6 +283,7 @@ st.markdown(f"""
         box-shadow: 0 1px 3px rgba(232, 97, 125, 0.05) !important;
         margin-bottom: 1rem !important;
     }}
+    .st-key-filter_card > div,
     .st-key-cal_card > div,
     .st-key-time_heatmap_card > div,
     .st-key-trend_card > div,
@@ -429,8 +431,7 @@ st.markdown(f"""
 
 
 # === Filters ===
-with st.container():
-    st.markdown('<div class="filter-card">', unsafe_allow_html=True)
+with st.container(key="filter_card"):
     fcol1, fcol2 = st.columns([3, 2])
 
     with fcol1:
@@ -450,8 +451,6 @@ with st.container():
             key="timezone_radio",
         )
         tz_suffix = "SG" if timezone == "Singapore (SG)" else "NZ"
-
-    st.markdown('</div>', unsafe_allow_html=True)
 
 filtered_df = df[
     (df[f'Start_Month_Year_{tz_suffix}'] >= start_month_year) &
