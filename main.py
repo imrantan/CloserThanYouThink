@@ -272,7 +272,9 @@ st.markdown(f"""
 
     /* === Chart cards (keyed containers) === */
     .st-key-cal_card,
-    .st-key-time_heatmap_card {{
+    .st-key-time_heatmap_card,
+    .st-key-trend_card,
+    .st-key-histogram_card {{
         background: {COLORS["card"]} !important;
         border: 1px solid {COLORS["border"]} !important;
         border-radius: 16px !important;
@@ -281,7 +283,9 @@ st.markdown(f"""
         margin-bottom: 1rem !important;
     }}
     .st-key-cal_card > div,
-    .st-key-time_heatmap_card > div {{
+    .st-key-time_heatmap_card > div,
+    .st-key-trend_card > div,
+    .st-key-histogram_card > div {{
         background: {COLORS["card"]} !important;
         border-radius: 16px !important;
     }}
@@ -657,9 +661,7 @@ with st.container(key="time_heatmap_card"):
 # === SECTION: Call duration trend ===
 section_header("📈", "How Our Calls Have Grown", "Track total or average call time over your chosen interval")
 
-with st.container():
-    st.markdown('<div class="chart-card">', unsafe_allow_html=True)
-
+with st.container(key="trend_card"):
     ctrl1, ctrl2, _ = st.columns([1, 1, 2])
     with ctrl1:
         time_interval = st.selectbox("Interval", ["Days", "Weeks", "Months"], index=1, key="trend_interval")
@@ -746,15 +748,12 @@ with st.container():
     )
 
     st.plotly_chart(fig_duration, use_container_width=True, config=PLOTLY_CONFIG)
-    st.markdown('</div>', unsafe_allow_html=True)
 
 
 # === SECTION: Distribution histogram ===
 section_header("📊", "Call Duration Distribution", "How long do our calls usually last?")
 
-with st.container():
-    st.markdown('<div class="chart-card">', unsafe_allow_html=True)
-
+with st.container(key="histogram_card"):
     bcol, _ = st.columns([1, 3])
     with bcol:
         bin_size = st.slider('Bin Size', min_value=5, max_value=50, value=30, step=5, key="bin_size_slider")
@@ -815,7 +814,6 @@ with st.container():
     )
 
     st.plotly_chart(fig_distribution, use_container_width=True, config=PLOTLY_CONFIG)
-    st.markdown('</div>', unsafe_allow_html=True)
 
 
 # === Footer ===
