@@ -435,6 +435,7 @@ with st.container():
             "Date Range",
             options=unique_month_years,
             value=(unique_month_years[0], unique_month_years[-1]),
+            key="date_range_slider",
         )
 
     with fcol2:
@@ -442,6 +443,7 @@ with st.container():
             "Timezone",
             ["Singapore (SG)", "New Zealand (NZ)"],
             horizontal=True,
+            key="timezone_radio",
         )
         tz_suffix = "SG" if timezone == "Singapore (SG)" else "NZ"
 
@@ -660,9 +662,9 @@ with st.container():
 
     ctrl1, ctrl2, _ = st.columns([1, 1, 2])
     with ctrl1:
-        time_interval = st.selectbox("Interval", ["Days", "Weeks", "Months"], index=1)
+        time_interval = st.selectbox("Interval", ["Days", "Weeks", "Months"], index=1, key="trend_interval")
     with ctrl2:
-        metric = st.selectbox("Metric", ["Total Minutes", "Average Minutes"])
+        metric = st.selectbox("Metric", ["Total Minutes", "Average Minutes"], key="trend_metric")
 
     df_call_trend = df_calendar[
         (df_calendar['date'] >= start_dt_filter) &
@@ -755,7 +757,7 @@ with st.container():
 
     bcol, _ = st.columns([1, 3])
     with bcol:
-        bin_size = st.slider('Bin Size', min_value=5, max_value=50, value=30, step=5)
+        bin_size = st.slider('Bin Size', min_value=5, max_value=50, value=30, step=5, key="bin_size_slider")
 
     # Build histogram with explicit bin edges anchored at 0 so no bin spans negative values
     call_durations = filtered_df["Call_Length_Minutes"].dropna()
